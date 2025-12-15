@@ -62,8 +62,18 @@ public partial class App : Application
 
         await _host.StartAsync();
 
-        var mainWindow = Services.GetRequiredService<MainWindow>();
-        mainWindow.Show();
+        var loginWindow = Services.GetRequiredService<LoginWindow>();
+        if (loginWindow.ShowDialog() == true)
+        {
+            ShutdownMode = ShutdownMode.OnMainWindowClose;
+            var mainWindow = Services.GetRequiredService<MainWindow>();
+            MainWindow = mainWindow;
+            mainWindow.Show();
+        }
+        else
+        {
+            Shutdown();
+        }
     }
 
     protected override async void OnExit(ExitEventArgs e)

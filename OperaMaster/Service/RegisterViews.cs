@@ -7,6 +7,7 @@ internal static class RegisterViews
 {
     public static IServiceCollection AddViews(this IServiceCollection services)
     {
+        services.AddTransient<LoginWindow>();
         services.AddTransient<MainWindow>();
         
         return services;
