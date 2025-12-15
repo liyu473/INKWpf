@@ -5,11 +5,50 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:hc="https://handyorg.github.io/handycontrol"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodel="clr-namespace:OperaMaster.ViewModel"
     Title="OperaMaster"
-    Width="800"
-    Height="450"
-    SystemBackdropType="Mica"
+    d:DataContext="{d:DesignInstance Type=viewmodel:MainWindowViewModel}"
+    hc:Empty.ShowEmpty="True"
+    hc:WindowAttach.SystemBackdropType="Mica"
+    ShowTitle="True"
+    Style="{StaticResource WindowWin10}"
+    WindowState="Maximized"
     mc:Ignorable="d">
+    <hc:Window.NonClientAreaContent>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <hc:UniformSpacingPanel Grid.Column="0" HorizontalAlignment="Stretch" />
+            <hc:UniformSpacingPanel
+                Grid.Column="1"
+                Orientation="Horizontal"
+                Spacing="12">
+                <Button
+                    x:Name="ClockButton"
+                    hc:IconElement.Geometry="{StaticResource ClockGeometry}"
+                    Click="ClockButton_Click"
+                    Style="{StaticResource ButtonIcon}" />
+                <Popup
+                    x:Name="ClockPopup"
+                    AllowsTransparency="True"
+                    Placement="Bottom"
+                    PlacementTarget="{Binding ElementName=ClockButton}"
+                    StaysOpen="False">
+                    <Border
+                        Background="{DynamicResource RegionBrush}"
+                        BorderBrush="{DynamicResource BorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="4"
+                        Effect="{StaticResource EffectShadow2}">
+                        <hc:FlipClock Margin="32" />
+                    </Border>
+                </Popup>
+                <Button hc:IconElement.Geometry="{StaticResource ConfigGeometry}" Style="{StaticResource ButtonIcon}" />
+            </hc:UniformSpacingPanel>
+        </Grid>
+    </hc:Window.NonClientAreaContent>
     <Grid>
 
     </Grid>

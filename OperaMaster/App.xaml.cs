@@ -1,14 +1,13 @@
-﻿using System.Windows;
-using LogExtension.Builder;
+﻿using LogExtension.Builder;
 using LogExtension.Extensions;
 using LyuEModbus.DependencyInjection;
-using LyuEModbus.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using OperaMaster.Service;
 using OperaMaster.View;
+using System.Windows;
 using ZLogger;
 using ZLogger.Providers;
 

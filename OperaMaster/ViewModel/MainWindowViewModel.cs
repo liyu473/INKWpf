@@ -1,5 +1,5 @@
 ﻿namespace OperaMaster.ViewModel;
 
-internal partial class MainWindowViewModel : ViewModelBase
+public partial class MainWindowViewModel : ViewModelBase
 {
 }

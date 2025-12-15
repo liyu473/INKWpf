@@ -9,7 +9,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <hc:ThemeResources />
                 <hc:Theme />
-                <!--  Other merged dictionaries here  -->
+                <ResourceDictionary Source="/Resources/Icons.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <!--  Other app resources here  -->
         </ResourceDictionary>

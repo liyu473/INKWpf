@@ -1,4 +1,4 @@
-﻿using HandyControl.Tools;
+﻿using OperaMaster.ViewModel;
 
 namespace OperaMaster.View
 {
@@ -7,9 +7,17 @@ namespace OperaMaster.View
     /// </summary>
     public partial class MainWindow : HandyControl.Controls.Window
     {
-        public MainWindow()
+        private readonly MainWindowViewModel _vm;
+        public MainWindow(MainWindowViewModel vm)
         {
             InitializeComponent();
+            DataContext = vm;
+            _vm = vm;
+        }
+
+        private void ClockButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            ClockPopup.IsOpen = true;
         }
     }
 }

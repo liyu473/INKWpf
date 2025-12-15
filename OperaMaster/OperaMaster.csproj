@@ -14,7 +14,7 @@
     <PackageReference Include="HandyControls" Version="3.6.0" />
     <PackageReference Include="LyuEModbus" Version="2.1.1" />
     <PackageReference Include="LyuExtensions" Version="1.1.6" />
-    <PackageReference Include="LyuLogExtension" Version="1.6.2" />
+    <PackageReference Include="LyuLogExtension" Version="1.7.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.1" />
   </ItemGroup>
 
