@@ -1,6 +1,6 @@
 ﻿using HandyControl.Tools;
 
-namespace OperaMaster
+namespace OperaMaster.View
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -10,7 +10,6 @@ namespace OperaMaster
         public MainWindow()
         {
             InitializeComponent();
-            ConfigHelper.Instance.SetWindowDefaultStyle();
         }
     }
 }
