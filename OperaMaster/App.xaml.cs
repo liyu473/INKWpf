@@ -1,6 +1,8 @@
 ﻿using System.Windows;
 using LogExtension.Builder;
 using LogExtension.Extensions;
+using LyuEModbus.DependencyInjection;
+using LyuEModbus.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -113,16 +115,26 @@ public partial class App : Application
 
         services.AddZLogger(builder =>
             builder
+                .WithRetentionDays(30) //保留30天
+                .WithCleanupInterval(TimeSpan.FromHours(2))
                 .FilterMicrosoft()
                 .FilterSystem()
                 .WithRollingInterval(RollingInterval.Hour) // 按小时滚动
                 .WithRollingSizeKB(10 * 1024) // 单文件最大 10MB
                 .AddInfoOutput()
-                .AddFileOutput("logs/trace", LogLevel.Trace)
+                .AddFileOutput(
+                    "logs/trace",
+                    LogLevel.Trace,
+                    LogLevel.Critical,
+                    RollingInterval.Hour,
+                    50 * 1024
+                )
                 .WithoutGlobalFilters()
                 .WithOutputFilter("System", LogLevel.Information)
                 .WithOutputFilter("Microsoft", LogLevel.Information)
         );
+
+        services.AddModbus(); // 暂时不创建预主站
     }
 
     /// <summary>
@@ -140,7 +152,7 @@ public partial class App : Application
         // 非 UI 线程未处理异常
         AppDomain.CurrentDomain.UnhandledException += (s, e) =>
         {
-            _logger?.ZLogError($"非UI线程异常{e.ExceptionObject as Exception}" );
+            _logger?.ZLogError($"非UI线程异常{e.ExceptionObject as Exception}");
         };
 
         // Task 未观察到的异常
