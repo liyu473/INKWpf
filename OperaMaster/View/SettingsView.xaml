@@ -6,56 +6,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
+    xmlns:viewmodel="clr-namespace:OperaMaster.ViewModel"
+    d:DataContext="{d:DesignInstance Type=viewmodel:SettingsViewModel}"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <ScrollViewer Padding="24">
-        <StackPanel MaxWidth="600">
-            <!-- 主题设置卡片 -->
-            <Border
-                Margin="0,0,0,16"
-                Padding="20"
-                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
-                BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
-                BorderThickness="1"
-                CornerRadius="8">
-                <StackPanel>
-                    <TextBlock
-                        Margin="0,0,0,16"
-                        FontSize="18"
-                        FontWeight="SemiBold"
-                        Text="主题设置" />
 
-                    <TextBlock
-                        Margin="0,0,0,8"
-                        FontWeight="SemiBold"
-                        Text="主题模式" />
-                    <StackPanel Margin="0,0,0,20" Orientation="Horizontal">
-                        <RadioButton
-                            x:Name="LightRadio"
-                            Margin="0,0,16,0"
-                            Click="LightTheme_Click"
-                            Content="浅色"
-                            GroupName="Theme" />
-                        <RadioButton
-                            x:Name="DarkRadio"
-                            Click="DarkTheme_Click"
-                            Content="深色"
-                            GroupName="Theme" />
-                    </StackPanel>
-
-                    <TextBlock
-                        Margin="0,0,0,8"
-                        FontWeight="SemiBold"
-                        Text="主题色" />
-                    <colorpicker:SquarePicker
-                        x:Name="ColorPicker"
-                        Width="200"
-                        Height="200"
-                        HorizontalAlignment="Left"
-                        ColorChanged="ColorPicker_ColorChanged" />
-                </StackPanel>
-            </Border>
-        </StackPanel>
-    </ScrollViewer>
 </UserControl>

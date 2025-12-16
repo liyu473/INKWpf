@@ -41,10 +41,11 @@
 
     <ui:NavigationView
         x:Name="NavView"
+        BackRequested="NvSample_BackRequested"
         Header="{Binding Header}"
         IsBackButtonVisible="Auto"
         IsPaneToggleButtonVisible="True"
-        IsSettingsVisible="True"
+        IsSettingsVisible="False"
         PaneDisplayMode="{Binding NavPanelMode}"
         SelectionChanged="NavView_SelectionChanged">
 
@@ -60,13 +61,18 @@
         </ui:NavigationView.MenuItems>
 
         <ui:NavigationView.FooterMenuItems>
-            <ui:NavigationViewItem Content="Account" Tag="SamplePage4">
+            <ui:NavigationViewItem Content="个人" Tag="Account">
                 <ui:NavigationViewItem.Icon>
                     <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.Contact}" />
                 </ui:NavigationViewItem.Icon>
             </ui:NavigationViewItem>
+            <ui:NavigationViewItem Content="设置" Tag="Settings">
+                <ui:NavigationViewItem.Icon>
+                    <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.Settings}" />
+                </ui:NavigationViewItem.Icon>
+            </ui:NavigationViewItem>
         </ui:NavigationView.FooterMenuItems>
 
-        <ui:Frame x:Name="ContentFrame" />
+        <ui:Frame x:Name="ContentFrame" Content="{Binding Page}" />
     </ui:NavigationView>
 </Window>

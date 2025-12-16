@@ -1,27 +1,17 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using iNKORE.UI.WPF.Modern.Controls;
-using OperaMaster.View;
+using OperaMaster.Service;
 
 namespace OperaMaster.ViewModel;
 
-public partial class MainWindowViewModel : ViewModelBase
+public partial class MainWindowViewModel(NavigateServer nav) : ViewModelBase
 {
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(Header))]
-    public partial object? Page { get; set; }
+    public partial object? Page { get; set; } = nav.GetPageByTag("LaserParameter");
 
-    public string? Header => Page?.ToString();
+    public string? Header => Page is { } page ? nav.GetHeaderByType(page.GetType()) : null;
 
     [ObservableProperty]
-    public partial NavigationViewPaneDisplayMode NavPanelMode { get; set; } 
-
-    public void NavigateTo(string tag)
-    {
-        Page = tag switch
-        {
-            "LaserParameter" => App.GetService<LaserParameterView>(),
-            "Settings" => App.GetService<SettingsView>(),
-            _ => Page
-        };
-    }
+    public partial NavigationViewPaneDisplayMode NavPanelMode { get; set; } = NavigationViewPaneDisplayMode.Auto;
 }

@@ -59,7 +59,6 @@ public partial class App : Application
     {
         base.OnStartup(e);
 
-
         _host = CreateHostBuilder(e.Args).Build();
         Services = _host.Services;
         _logger = Services.GetRequiredService<ILogger<App>>();
@@ -126,7 +125,7 @@ public partial class App : Application
     {
         services.AddSingleton(context.Configuration);
 
-        services.AddViews().AddViewModels();
+        services.AddViews().AddViewModels().AddNavigation();
 
         services.AddZLogger(builder =>
             builder

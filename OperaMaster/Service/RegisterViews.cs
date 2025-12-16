@@ -24,4 +24,14 @@ internal static class RegisterViews
 
         return services;
     }
+
+    /// <summary>
+    /// 注册导航服务
+    /// </summary>
+    public static IServiceCollection AddNavigation(this IServiceCollection services)
+    {
+        services.AddSingleton<NavigateServer>();
+        services.AddDefaultPages();
+        return services;
+    }
 }
