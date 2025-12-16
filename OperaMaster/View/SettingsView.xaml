@@ -29,35 +29,34 @@
                 </ComboBox>
             </ui:SettingsCard>
 
-            <ui:SettingsExpander
-                Description="Custom app theme color"
-                Header="主题色"
-                IsExpanded="True">
-                <ui:SettingsExpander.HeaderIcon>
-                    <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.Eyedropper}" />
-                </ui:SettingsExpander.HeaderIcon>
-                <ui:SettingsExpander.Items>
-                    <Grid Margin="20,12">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock
-                            Margin="12,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            Foreground="{Binding SelectedColor}"
-                            Style="{StaticResource {x:Static ui:ThemeKeys.BodyTextBlockStyleKey}}"
-                            Text="修改主题色/背景" />
-                        <ikw:SquarePicker
-                            x:Name="ColorPicker"
-                            Grid.Column="1"
-                            MinWidth="200"
-                            MinHeight="200"
-                            SelectedColor="{Binding SelectedColor, Mode=TwoWay}" />
-                    </Grid>
-                </ui:SettingsExpander.Items>
-            </ui:SettingsExpander>
+
+            <Border Style="{StaticResource CardStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <ui:FontIcon
+                        Grid.Column="0"
+                        Margin="0,0,16,0"
+                        VerticalAlignment="Center"
+                        Icon="{x:Static ui:SegoeFluentIcons.Eyedropper}" />
+
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock FontWeight="SemiBold" Text="主题色" />
+                        <TextBlock Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="Custom app theme color" />
+                    </StackPanel>
+
+                    <ikw:SquarePicker
+                        x:Name="ColorPicker"
+                        Grid.Column="2"
+                        MinWidth="200"
+                        MinHeight="200"
+                        SelectedColor="{Binding SelectedColor, Mode=TwoWay}" />
+                </Grid>
+            </Border>
         </ikw:SimpleStackPanel>
     </ScrollViewer>
 </UserControl>

@@ -13,6 +13,14 @@
                 <ui:XamlControlsResources />
             </ResourceDictionary.MergedDictionaries>
             <converter:ColorToLightColorConverter x:Key="ColorToLightColorConverter" />
+
+            <Style x:Key="CardStyle" TargetType="Border">
+                <Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorDefaultBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource CardStrokeColorDefaultBrush}" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="4" />
+                <Setter Property="Padding" Value="16" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

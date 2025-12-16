@@ -160,7 +160,7 @@ public partial class App : Application
                 .WithRollingSizeKB(10 * 1024) // 单文件最大 10MB
                 .AddInfoOutput()
                 .AddFileOutput(
-                    "logs/trace",
+                    "logs/trace/",
                     LogLevel.Trace,
                     LogLevel.Critical,
                     RollingInterval.Hour,
