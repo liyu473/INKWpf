@@ -77,6 +77,21 @@
                         SelectedColor="{Binding SelectedColor, Mode=TwoWay}" />
                 </Grid>
             </Border>
+
+            <TextBlock
+                Margin="0,16,10,5"
+                Style="{DynamicResource BodyStrongTextBlockStyle}"
+                Text="About" />
+
+            <ui:SettingsCard
+                Description="{Binding Version}"
+                Header="{Binding AppName}"
+                IsClickEnabled="True">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.SearchAndApps}" />
+                </ui:SettingsCard.HeaderIcon>
+            </ui:SettingsCard>
+
         </ikw:SimpleStackPanel>
     </ScrollViewer>
 </UserControl>

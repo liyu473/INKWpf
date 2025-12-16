@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Messaging;
 using iNKORE.UI.WPF.Modern;
 using OperaMaster.Properties;
+using System.Reflection;
 using System.Windows.Media;
 
 namespace OperaMaster.ViewModel;
@@ -14,6 +15,7 @@ public record NavPanelModeChangedMessage(string Mode);
 
 public partial class SettingsViewModel : ViewModelBase
 {
+    private static readonly Assembly _assembly = Assembly.GetExecutingAssembly();
     public SettingsViewModel()
     {
         SelectedColor = (Color)ColorConverter.ConvertFromString(Settings.Default.AccentColor);
@@ -102,4 +104,14 @@ public partial class SettingsViewModel : ViewModelBase
 
         WeakReferenceMessenger.Default.Send(new NavPanelModeChangedMessage(mode));
     }
+
+    /// <summary>
+    /// 程序集名称
+    /// </summary>
+    public string AppName => _assembly.GetName().Name ?? string.Empty;
+
+    /// <summary>
+    /// 版本号
+    /// </summary>
+    public string Version => _assembly.GetName().Version?.ToString() ?? string.Empty;
 }
