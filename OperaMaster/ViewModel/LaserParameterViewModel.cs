@@ -4,13 +4,13 @@ using LyuEModbus.Models;
 
 namespace OperaMaster.ViewModel;
 
-public partial class LaserParameterViewModel(IEModbusFactory factory, ModbusMasterOptions opt) : ViewModelBase
+public partial class LaserParameterViewModel(IEModbusFactory factory, ModbusMasterOptions opt)
+    : ViewModelBase
 {
-    private readonly IModbusMasterClient _master = factory.CreateTcpMaster(opt.Name);
+    private readonly IModbusMasterClient _master =
+        factory.GetMaster(opt.Name)
+        ?? throw new InvalidOperationException($"Modbus master '{opt.Name}' not found.");
 
     [RelayCommand]
-    private async Task SetParamter(int deviceid)
-    {
-
-    }
+    private async Task SetParamter(int deviceid) { }
 }

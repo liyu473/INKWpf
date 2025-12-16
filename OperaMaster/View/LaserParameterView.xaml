@@ -11,6 +11,15 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
 
+        <TextBlock
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Style="{StaticResource TextBlockLargeBold}"
+            Text="参数设置" />
     </Grid>
 </UserControl>
