@@ -8,5 +8,8 @@
     <Setting Name="ThemeMode" Type="System.String" Scope="User">
       <Value Profile="(Default)">Default</Value>
     </Setting>
+    <Setting Name="BackdropType" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Mica</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

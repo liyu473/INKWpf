@@ -46,5 +46,17 @@ namespace OperaMaster.Properties {
                 this["ThemeMode"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Mica")]
+        public string BackdropType {
+            get {
+                return ((string)(this["BackdropType"]));
+            }
+            set {
+                this["BackdropType"] = value;
+            }
+        }
     }
 }

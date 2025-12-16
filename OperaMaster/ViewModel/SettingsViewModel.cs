@@ -1,9 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
 using iNKORE.UI.WPF.Modern;
 using OperaMaster.Properties;
 using System.Windows.Media;
 
 namespace OperaMaster.ViewModel;
+
+// 背景类型变更消息
+public record BackdropChangedMessage(string BackdropType);
 
 public partial class SettingsViewModel : ViewModelBase
 {
@@ -17,6 +21,13 @@ public partial class SettingsViewModel : ViewModelBase
             "Dark" => 1,
             _ => 2
         };
+
+        SelectedBackdropIndex = Settings.Default.BackdropType switch
+        {
+            "Mica" => 0,
+            "Acrylic10" => 1,
+            _ => 0
+        };
     }
 
     [ObservableProperty]
@@ -24,6 +35,9 @@ public partial class SettingsViewModel : ViewModelBase
 
     [ObservableProperty]
     public partial int SelectedThemeIndex { get; set; }
+
+    [ObservableProperty]
+    public partial int SelectedBackdropIndex { get; set; }
 
     partial void OnSelectedColorChanged(Color value)
     {
@@ -44,5 +58,20 @@ public partial class SettingsViewModel : ViewModelBase
         ThemeManager.Current.ApplicationTheme = theme;
         Settings.Default.ThemeMode = mode;
         Settings.Default.Save();
+    }
+
+    partial void OnSelectedBackdropIndexChanged(int value)
+    {
+        var backdropType = value switch
+        {
+            0 => "Mica",
+            1 => "Acrylic10",
+            _ => "Mica"
+        };
+
+        Settings.Default.BackdropType = backdropType;
+        Settings.Default.Save();
+
+        WeakReferenceMessenger.Default.Send(new BackdropChangedMessage(backdropType));
     }
 }

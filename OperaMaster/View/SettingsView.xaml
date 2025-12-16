@@ -29,6 +29,16 @@
                 </ComboBox>
             </ui:SettingsCard>
 
+            <ui:SettingsCard Description="Select window backdrop effect" Header="背景效果">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.Photo}" />
+                </ui:SettingsCard.HeaderIcon>
+                <ComboBox Width="150" SelectedIndex="{Binding SelectedBackdropIndex, Mode=TwoWay}">
+                    <ComboBoxItem Content="云母 (Mica)" />
+                    <ComboBoxItem Content="亚克力 (Acrylic)" />
+                </ComboBox>
+            </ui:SettingsCard>
+
 
             <Border Style="{StaticResource CardStyle}">
                 <Grid>

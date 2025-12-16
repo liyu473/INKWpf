@@ -1,6 +1,11 @@
 ﻿using System.Windows;
+using CommunityToolkit.Mvvm.Messaging;
+using iNKORE.UI.WPF.Modern;
 using iNKORE.UI.WPF.Modern.Controls;
+using iNKORE.UI.WPF.Modern.Controls.Helpers;
+using iNKORE.UI.WPF.Modern.Helpers.Styles;
 using iNKORE.UI.WPF.Modern.Media.Animation;
+using OperaMaster.Properties;
 using OperaMaster.Service;
 using OperaMaster.ViewModel;
 
@@ -17,6 +22,24 @@ public partial class MainWindow : Window
         DataContext = vm;
         _vm = vm;
         _nav = nav;
+
+        ApplyBackdropType(Settings.Default.BackdropType);
+
+        WeakReferenceMessenger.Default.Register<BackdropChangedMessage>(this, (r, m) =>
+        {
+            ApplyBackdropType(m.BackdropType);
+        });
+    }
+
+    private void ApplyBackdropType(string backdropType)
+    {
+        var type = backdropType switch
+        {
+            "Acrylic10" => BackdropType.Acrylic10,
+            _ => BackdropType.Mica
+        };
+
+        WindowHelper.SetSystemBackdropType(this, type);
     }
 
     private void NavView_SelectionChanged(
