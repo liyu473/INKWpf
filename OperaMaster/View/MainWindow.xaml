@@ -44,9 +44,9 @@
     <Grid x:Name="rootGrid">
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Offset="0" Color="{Binding AccentColor, Source={x:Static ui:ThemeManager.Current}, Converter={StaticResource ColorToLightColorConverter}, ConverterParameter=20}" />
-                <GradientStop Offset="0.5" Color="{Binding AccentColor, Source={x:Static ui:ThemeManager.Current}, Converter={StaticResource ColorToLightColorConverter}, ConverterParameter=10}" />
-                <GradientStop Offset="1" Color="{Binding AccentColor, Source={x:Static ui:ThemeManager.Current}, Converter={StaticResource ColorToLightColorConverter}, ConverterParameter=20}" />
+                <GradientStop Offset="0" Color="{Binding AccentColor, Source={x:Static ui:ThemeManager.Current}, Converter={StaticResource ColorToLightColorConverter}, ConverterParameter=22}" />
+                <GradientStop Offset="0.5" Color="{Binding AccentColor, Source={x:Static ui:ThemeManager.Current}, Converter={StaticResource ColorToLightColorConverter}, ConverterParameter=15}" />
+                <GradientStop Offset="1" Color="{Binding AccentColor, Source={x:Static ui:ThemeManager.Current}, Converter={StaticResource ColorToLightColorConverter}, ConverterParameter=40}" />
             </LinearGradientBrush>
         </Grid.Background>
 

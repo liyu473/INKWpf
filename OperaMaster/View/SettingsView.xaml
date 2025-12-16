@@ -29,22 +29,35 @@
                 </ComboBox>
             </ui:SettingsCard>
 
-            <ui:SettingsCard Description="Custom app theme color" Header="主题色">
-                <ui:SettingsCard.HeaderIcon>
+            <ui:SettingsExpander
+                Description="Custom app theme color"
+                Header="主题色"
+                IsExpanded="True">
+                <ui:SettingsExpander.HeaderIcon>
                     <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.Eyedropper}" />
-                </ui:SettingsCard.HeaderIcon>
-                <ui:DropDownButton Width="150" Content="修改">
-                    <ui:FlyoutService.Flyout>
-                        <ui:Flyout>
-                            <ikw:SquarePicker
-                                MinWidth="200"
-                                MinHeight="200"
-                                IsEnabled="True"
-                                SelectedColor="{Binding SelectedColor, Mode=TwoWay}" />
-                        </ui:Flyout>
-                    </ui:FlyoutService.Flyout>
-                </ui:DropDownButton>
-            </ui:SettingsCard>
+                </ui:SettingsExpander.HeaderIcon>
+                <ui:SettingsExpander.Items>
+                    <Grid Margin="20,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            Margin="12,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Foreground="{Binding SelectedColor}"
+                            Style="{StaticResource {x:Static ui:ThemeKeys.BodyTextBlockStyleKey}}"
+                            Text="修改主题色/背景" />
+                        <ikw:SquarePicker
+                            x:Name="ColorPicker"
+                            Grid.Column="1"
+                            MinWidth="200"
+                            MinHeight="200"
+                            SelectedColor="{Binding SelectedColor, Mode=TwoWay}" />
+                    </Grid>
+                </ui:SettingsExpander.Items>
+            </ui:SettingsExpander>
         </ikw:SimpleStackPanel>
     </ScrollViewer>
 </UserControl>
