@@ -2,7 +2,7 @@ using System.Windows;
 
 namespace OperaMaster.View;
 
-public partial class LoginWindow :Window
+public partial class LoginWindow : Window
 {
     public LoginWindow()
     {
@@ -12,11 +12,6 @@ public partial class LoginWindow :Window
         UsernameBox.Text = "admin";
         PasswordBox.Password = "123456";
 #endif
-    }
-
-    private void CloseButton_Click(object sender, RoutedEventArgs e)
-    {
-        Close();
     }
 
     private void LoginButton_Click(object sender, RoutedEventArgs e)
@@ -39,10 +34,5 @@ public partial class LoginWindow :Window
         {
             ErrorText.Text = "用户名或密码错误";
         }
-    }
-
-    private void Border_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-    {
-        DragMove();
     }
 }

@@ -1,23 +1,25 @@
-﻿using OperaMaster.ViewModel;
+﻿using System.Windows;
+using iNKORE.UI.WPF.Modern.Controls;
+using OperaMaster.ViewModel;
 
-namespace OperaMaster.View
+namespace OperaMaster.View;
+
+public partial class MainWindow : Window
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : HandyControl.Controls.Window
-    {
-        private readonly MainWindowViewModel _vm;
-        public MainWindow(MainWindowViewModel vm)
-        {
-            InitializeComponent();
-            DataContext = vm;
-            _vm = vm;
-        }
+    private readonly MainWindowViewModel _vm;
 
-        private void ClockButton_Click(object sender, System.Windows.RoutedEventArgs e)
+    public MainWindow(MainWindowViewModel vm)
+    {
+        InitializeComponent();
+        DataContext = vm;
+        _vm = vm;
+    }
+
+    private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+    {
+        if (args.SelectedItem is NavigationViewItem item && item.Tag is string tag)
         {
-            ClockPopup.IsOpen = true;
+            _vm.NavigateTo(tag);
         }
     }
 }

@@ -19,7 +19,8 @@
         <TextBlock
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Style="{StaticResource TextBlockLargeBold}"
+            FontSize="24"
+            FontWeight="SemiBold"
             Text="参数设置" />
     </Grid>
 </UserControl>

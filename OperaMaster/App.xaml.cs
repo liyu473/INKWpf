@@ -54,9 +54,11 @@ public partial class App : Application
         SetupExceptionHandling();
     }
 
+
     protected override async void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
+
 
         _host = CreateHostBuilder(e.Args).Build();
         Services = _host.Services;

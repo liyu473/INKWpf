@@ -1,59 +1,72 @@
-﻿<hc:Window
+﻿<Window
     x:Class="OperaMaster.View.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:hc="https://handyorg.github.io/handycontrol"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
     xmlns:viewmodel="clr-namespace:OperaMaster.ViewModel"
     Title="OperaMaster"
+    Width="1200"
+    Height="800"
     d:DataContext="{d:DesignInstance Type=viewmodel:MainWindowViewModel}"
-    hc:Empty.ShowEmpty="True"
-    hc:WindowAttach.SystemBackdropType="Mica"
-    ShowTitle="True"
-    Style="{StaticResource WindowWin10}"
+    ui:TitleBar.Height="36"
+    ui:WindowHelper.SystemBackdropType="Mica"
+    ui:WindowHelper.UseModernWindowStyle="True"
+    WindowStartupLocation="CenterScreen"
     WindowState="Maximized"
     mc:Ignorable="d">
-    <hc:Window.NonClientAreaContent>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <hc:UniformSpacingPanel Grid.Column="0" HorizontalAlignment="Stretch" />
-            <hc:UniformSpacingPanel
-                Grid.Column="1"
-                Orientation="Horizontal"
-                Spacing="12">
-                <Button
-                    x:Name="ClockButton"
-                    hc:IconElement.Geometry="{StaticResource ClockGeometry}"
-                    Click="ClockButton_Click"
-                    Style="{StaticResource ButtonIcon}" />
-                <Popup
-                    x:Name="ClockPopup"
-                    AllowsTransparency="True"
-                    Placement="Bottom"
-                    PlacementTarget="{Binding ElementName=ClockButton}"
-                    StaysOpen="False">
-                    <Border
-                        Background="{DynamicResource RegionBrush}"
-                        BorderBrush="{DynamicResource BorderBrush}"
-                        BorderThickness="1"
-                        CornerRadius="4"
-                        Effect="{StaticResource EffectShadow2}">
-                        <hc:FlipClock Margin="32" />
-                    </Border>
-                </Popup>
-                <Button hc:IconElement.Geometry="{StaticResource ConfigGeometry}" Style="{StaticResource ButtonIcon}" />
-            </hc:UniformSpacingPanel>
-        </Grid>
-    </hc:Window.NonClientAreaContent>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ui:ThemeResources CanBeAccessedAcrossThreads="False">
+                    <ui:ThemeResources.ThemeDictionaries>
+                        <ResourceDictionary x:Key="Light">
+                            <StaticResource x:Key="NavigationViewContentBackground" ResourceKey="LayerFillColorDefaultBrush" />
+                            <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="Transparent" />
+                        </ResourceDictionary>
+                        <ResourceDictionary x:Key="Dark">
+                            <StaticResource x:Key="NavigationViewContentBackground" ResourceKey="LayerFillColorDefaultBrush" />
+                            <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="Transparent" />
+                        </ResourceDictionary>
+                        <ResourceDictionary x:Key="HighContrast">
+                            <SolidColorBrush x:Key="NavigationViewContentBackground" Color="{DynamicResource SystemColorWindowColor}" />
+                            <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="{DynamicResource SystemColorWindowColor}" />
+                        </ResourceDictionary>
+                    </ui:ThemeResources.ThemeDictionaries>
+                </ui:ThemeResources>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
 
+    <ui:NavigationView
+        x:Name="NavView"
+        Header="{Binding Header}"
+        IsBackButtonVisible="Auto"
+        IsPaneToggleButtonVisible="True"
+        IsSettingsVisible="True"
+        PaneDisplayMode="{Binding NavPanelMode}"
+        SelectionChanged="NavView_SelectionChanged">
 
-    <Grid>
-        <hc:TransitioningContentControl Content="{Binding Page}" TransitionMode="Right2LeftWithFade" />
-    </Grid>
+        <ui:NavigationView.MenuItems>
+            <ui:NavigationViewItem
+                Content="激光参数"
+                IsSelected="True"
+                Tag="LaserParameter">
+                <ui:NavigationViewItem.Icon>
+                    <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.Handwriting20}" />
+                </ui:NavigationViewItem.Icon>
+            </ui:NavigationViewItem>
+        </ui:NavigationView.MenuItems>
 
+        <ui:NavigationView.FooterMenuItems>
+            <ui:NavigationViewItem Content="Account" Tag="SamplePage4">
+                <ui:NavigationViewItem.Icon>
+                    <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.Contact}" />
+                </ui:NavigationViewItem.Icon>
+            </ui:NavigationViewItem>
+        </ui:NavigationView.FooterMenuItems>
 
-</hc:Window>
+        <ui:Frame x:Name="ContentFrame" />
+    </ui:NavigationView>
+</Window>
