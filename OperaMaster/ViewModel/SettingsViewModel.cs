@@ -9,6 +9,9 @@ namespace OperaMaster.ViewModel;
 // 背景类型变更消息
 public record BackdropChangedMessage(string BackdropType);
 
+// 导航位置变更消息
+public record NavPanelModeChangedMessage(string Mode);
+
 public partial class SettingsViewModel : ViewModelBase
 {
     public SettingsViewModel()
@@ -28,6 +31,13 @@ public partial class SettingsViewModel : ViewModelBase
             "Acrylic10" => 1,
             _ => 0
         };
+
+        SelectedNavModeIndex = Settings.Default.NavPanelMode switch
+        {
+            "Left" => 0,
+            "Top" => 1,
+            _ => 0
+        };
     }
 
     [ObservableProperty]
@@ -38,6 +48,9 @@ public partial class SettingsViewModel : ViewModelBase
 
     [ObservableProperty]
     public partial int SelectedBackdropIndex { get; set; }
+
+    [ObservableProperty]
+    public partial int SelectedNavModeIndex { get; set; }
 
     partial void OnSelectedColorChanged(Color value)
     {
@@ -73,5 +86,20 @@ public partial class SettingsViewModel : ViewModelBase
         Settings.Default.Save();
 
         WeakReferenceMessenger.Default.Send(new BackdropChangedMessage(backdropType));
+    }
+
+    partial void OnSelectedNavModeIndexChanged(int value)
+    {
+        var mode = value switch
+        {
+            0 => "Left",
+            1 => "Top",
+            _ => "Left"
+        };
+
+        Settings.Default.NavPanelMode = mode;
+        Settings.Default.Save();
+
+        WeakReferenceMessenger.Default.Send(new NavPanelModeChangedMessage(mode));
     }
 }

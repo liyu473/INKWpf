@@ -11,5 +11,8 @@
     <Setting Name="BackdropType" Type="System.String" Scope="User">
       <Value Profile="(Default)">Mica</Value>
     </Setting>
+    <Setting Name="NavPanelMode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Left</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

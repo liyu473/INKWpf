@@ -51,6 +51,7 @@
             BackRequested="NvSample_BackRequested"
             Header="{Binding Header}"
             IsBackButtonVisible="Auto"
+            IsBackEnabled="{Binding ElementName=ContentFrame, Path=CanGoBack}"
             IsPaneToggleButtonVisible="True"
             IsSettingsVisible="False"
             PaneDisplayMode="{Binding NavPanelMode}"

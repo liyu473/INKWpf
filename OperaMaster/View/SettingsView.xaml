@@ -39,6 +39,16 @@
                 </ComboBox>
             </ui:SettingsCard>
 
+            <ui:SettingsCard Description="Select navigation panel position" Header="导航位置">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.DockLeft}" />
+                </ui:SettingsCard.HeaderIcon>
+                <ComboBox Width="150" SelectedIndex="{Binding SelectedNavModeIndex, Mode=TwoWay}">
+                    <ComboBoxItem Content="侧边" />
+                    <ComboBoxItem Content="顶部" />
+                </ComboBox>
+            </ui:SettingsCard>
+
 
             <Border Style="{StaticResource CardStyle}">
                 <Grid>

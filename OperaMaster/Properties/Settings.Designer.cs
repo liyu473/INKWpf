@@ -58,5 +58,17 @@ namespace OperaMaster.Properties {
                 this["BackdropType"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Left")]
+        public string NavPanelMode {
+            get {
+                return ((string)(this["NavPanelMode"]));
+            }
+            set {
+                this["NavPanelMode"] = value;
+            }
+        }
     }
 }
