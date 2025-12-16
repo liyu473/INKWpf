@@ -6,13 +6,14 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+	<LangVersion>preview</LangVersion>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="HandyControls" Version="3.6.0" />
-    <PackageReference Include="LyuEModbus" Version="2.1.1" />
+    <PackageReference Include="LyuEModbus" Version="2.1.3" />
     <PackageReference Include="LyuExtensions" Version="1.1.6" />
     <PackageReference Include="LyuLogExtension" Version="1.7.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.1" />

@@ -9,6 +9,8 @@ internal static class RegisterViews
     {
         services.AddTransient<LoginWindow>();
         services.AddTransient<MainWindow>();
+        services.AddTransient<LaserParameterView>();
+        services.AddTransient<SettingsView>();
         
         return services;
     }
@@ -17,6 +19,8 @@ internal static class RegisterViews
     public static IServiceCollection AddViewModels(this IServiceCollection services)
     {
         services.AddSingleton<MainWindowViewModel>();
+        services.AddSingleton<LaserParameterViewModel>();
+        services.AddSingleton<SettingsViewModel>();
 
         return services;
     }

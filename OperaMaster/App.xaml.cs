@@ -1,13 +1,15 @@
-﻿using LogExtension.Builder;
+﻿using System.Windows;
+using Extensions;
+using LogExtension.Builder;
 using LogExtension.Extensions;
 using LyuEModbus.DependencyInjection;
+using LyuEModbus.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using OperaMaster.Service;
 using OperaMaster.View;
-using System.Windows;
 using ZLogger;
 using ZLogger.Providers;
 
@@ -106,11 +108,13 @@ public partial class App : Application
         config
             .SetBasePath(AppContext.BaseDirectory)
             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+#if DEBUG
             .AddJsonFile(
-                $"appsettings.{context.HostingEnvironment.EnvironmentName}.json",
+                $"appsettings.Development.json",
                 optional: true,
                 reloadOnChange: true
             );
+#endif
     }
 
     /// <summary>
@@ -124,7 +128,7 @@ public partial class App : Application
 
         services.AddZLogger(builder =>
             builder
-                .WithRetentionDays(30) //保留30天
+                .WithRetentionDays(30) // 保留30天
                 .WithCleanupInterval(TimeSpan.FromHours(2))
                 .FilterMicrosoft()
                 .FilterSystem()
@@ -143,7 +147,22 @@ public partial class App : Application
                 .WithOutputFilter("Microsoft", LogLevel.Information)
         );
 
-        services.AddModbus(); // 暂时不创建预主站
+        var modbusOptions = context.Configuration.GetSection("Modbus").Get<ModbusMasterOptions>();
+        if (modbusOptions?.Name is not null)
+        {
+            services.AddSingleton(modbusOptions);
+
+            services.AddModbus(options =>
+            options.AddTcpMaster(modbusOptions.Name, master =>
+            {
+                master.IpAddress = modbusOptions.IpAddress;
+                master.Port = modbusOptions.Port;
+                master.SlaveId = modbusOptions.SlaveId;
+                master.ReadTimeout = modbusOptions.ReadTimeout;
+                master.WriteTimeout = modbusOptions.WriteTimeout;
+            })
+        );
+        }       
     }
 
     /// <summary>
