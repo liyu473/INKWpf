@@ -10,7 +10,9 @@
     Width="1200"
     Height="800"
     d:DataContext="{d:DesignInstance Type=viewmodel:MainWindowViewModel}"
+    ui:TitleBar.Background="{Binding ElementName=rootGrid, Path=Background}"
     ui:TitleBar.Height="36"
+    ui:TitleBar.InactiveBackground="{Binding ElementName=rootGrid, Path=Background}"
     ui:WindowHelper.SystemBackdropType="Mica"
     ui:WindowHelper.UseModernWindowStyle="True"
     WindowStartupLocation="CenterScreen"
@@ -39,44 +41,54 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <ui:NavigationView
-        x:Name="NavView"
-        BackRequested="NvSample_BackRequested"
-        Header="{Binding Header}"
-        IsBackButtonVisible="Auto"
-        IsPaneToggleButtonVisible="True"
-        IsSettingsVisible="False"
-        PaneDisplayMode="{Binding NavPanelMode}"
-        PaneTitle="目录"
-        SelectionChanged="NavView_SelectionChanged">
+    <Grid x:Name="rootGrid">
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="{Binding AccentColor, Source={x:Static ui:ThemeManager.Current}, Converter={StaticResource ColorToLightColorConverter}, ConverterParameter=20}" />
+                <GradientStop Offset="0.5" Color="{Binding AccentColor, Source={x:Static ui:ThemeManager.Current}, Converter={StaticResource ColorToLightColorConverter}, ConverterParameter=10}" />
+                <GradientStop Offset="1" Color="{Binding AccentColor, Source={x:Static ui:ThemeManager.Current}, Converter={StaticResource ColorToLightColorConverter}, ConverterParameter=20}" />
+            </LinearGradientBrush>
+        </Grid.Background>
 
-        <ui:NavigationView.MenuItems>
-            <ui:NavigationViewItem
-                Content="激光参数"
-                IsSelected="True"
-                Tag="LaserParameter">
-                <ui:NavigationViewItem.Icon>
-                    <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.Handwriting20}" />
-                </ui:NavigationViewItem.Icon>
-            </ui:NavigationViewItem>
-        </ui:NavigationView.MenuItems>
+        <ui:NavigationView
+            x:Name="NavView"
+            BackRequested="NvSample_BackRequested"
+            Header="{Binding Header}"
+            IsBackButtonVisible="Auto"
+            IsPaneToggleButtonVisible="True"
+            IsSettingsVisible="False"
+            PaneDisplayMode="{Binding NavPanelMode}"
+            PaneTitle="目录"
+            SelectionChanged="NavView_SelectionChanged">
 
-        <ui:NavigationView.FooterMenuItems>
-            <ui:NavigationViewItem Content="个人" Tag="Account">
-                <ui:NavigationViewItem.Icon>
-                    <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.Contact}" />
-                </ui:NavigationViewItem.Icon>
-            </ui:NavigationViewItem>
-            <ui:NavigationViewItem Content="设置" Tag="Settings">
-                <ui:NavigationViewItem.Icon>
-                    <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.Settings}" />
-                </ui:NavigationViewItem.Icon>
-            </ui:NavigationViewItem>
-        </ui:NavigationView.FooterMenuItems>
+            <ui:NavigationView.MenuItems>
+                <ui:NavigationViewItem
+                    Content="激光参数"
+                    IsSelected="True"
+                    Tag="LaserParameter">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.Handwriting20}" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+            </ui:NavigationView.MenuItems>
 
-        <Border Padding="59,0">
-            <ui:Frame x:Name="ContentFrame" Content="{Binding Page, Mode=TwoWay}" />
-        </Border>
+            <ui:NavigationView.FooterMenuItems>
+                <ui:NavigationViewItem Content="个人" Tag="Account">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.Contact}" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItem Content="设置" Tag="Settings">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.Settings}" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+            </ui:NavigationView.FooterMenuItems>
 
-    </ui:NavigationView>
+            <Border Padding="59,0">
+                <ui:Frame x:Name="ContentFrame" Content="{Binding Page, Mode=TwoWay}" />
+            </Border>
+
+        </ui:NavigationView>
+    </Grid>
 </Window>

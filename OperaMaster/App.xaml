@@ -2,6 +2,7 @@
     x:Class="OperaMaster.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converter="clr-namespace:OperaMaster.Converter"
     xmlns:local="clr-namespace:OperaMaster"
     xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
     ShutdownMode="OnExplicitShutdown">
@@ -11,6 +12,7 @@
                 <ui:ThemeResources />
                 <ui:XamlControlsResources />
             </ResourceDictionary.MergedDictionaries>
+            <converter:ColorToLightColorConverter x:Key="ColorToLightColorConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>
