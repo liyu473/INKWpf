@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Windows;
 
 namespace OperaMaster.View;
@@ -7,6 +8,11 @@ public partial class LoginWindow : Window
     public LoginWindow()
     {
         InitializeComponent();
+
+        // 设置版本信息
+        var assembly = Assembly.GetExecutingAssembly();
+        AppNameText.Text = assembly.GetName().Name ?? "OperaMaster";
+        VersionText.Text = $"v{assembly.GetName().Version}";
 
 #if DEBUG
         UsernameBox.Text = "admin";
