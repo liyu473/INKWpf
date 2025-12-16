@@ -37,13 +37,13 @@ namespace OperaMaster.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool IsDarkTheme {
+        [global::System.Configuration.DefaultSettingValueAttribute("Default")]
+        public string ThemeMode {
             get {
-                return ((bool)(this["IsDarkTheme"]));
+                return ((string)(this["ThemeMode"]));
             }
             set {
-                this["IsDarkTheme"] = value;
+                this["ThemeMode"] = value;
             }
         }
     }

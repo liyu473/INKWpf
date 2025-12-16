@@ -30,7 +30,7 @@ public partial class MainWindow : Window
             if (page is not null)
             {
                 ContentFrame.Navigate(page, null, new DrillInNavigationTransitionInfo());
-                _vm.Page = page; 
+  
             }
         }
     }

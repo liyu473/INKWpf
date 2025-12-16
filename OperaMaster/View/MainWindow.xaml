@@ -47,6 +47,7 @@
         IsPaneToggleButtonVisible="True"
         IsSettingsVisible="False"
         PaneDisplayMode="{Binding NavPanelMode}"
+        PaneTitle="目录"
         SelectionChanged="NavView_SelectionChanged">
 
         <ui:NavigationView.MenuItems>
@@ -73,6 +74,9 @@
             </ui:NavigationViewItem>
         </ui:NavigationView.FooterMenuItems>
 
-        <ui:Frame x:Name="ContentFrame" Content="{Binding Page}" />
+        <Border Padding="59,0">
+            <ui:Frame x:Name="ContentFrame" Content="{Binding Page, Mode=TwoWay}" />
+        </Border>
+
     </ui:NavigationView>
 </Window>

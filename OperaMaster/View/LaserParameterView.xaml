@@ -15,12 +15,5 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-
-        <TextBlock
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            FontSize="24"
-            FontWeight="SemiBold"
-            Text="参数设置" />
     </Grid>
 </UserControl>
