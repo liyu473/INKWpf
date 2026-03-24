@@ -60,11 +60,11 @@
 
             <ui:NavigationView.MenuItems>
                 <ui:NavigationViewItem
-                    Content="激光参数"
+                    Content="主页"
                     IsSelected="True"
-                    Tag="LaserParameter">
+                    Tag="Home">
                     <ui:NavigationViewItem.Icon>
-                        <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.Handwriting20}" />
+                        <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.Home}" />
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
             </ui:NavigationView.MenuItems>

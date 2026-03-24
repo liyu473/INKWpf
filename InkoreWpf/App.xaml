@@ -4,8 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converter="clr-namespace:InkoreWpf.Converter"
     xmlns:local="clr-namespace:InkoreWpf"
-    xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
-    ShutdownMode="OnExplicitShutdown">
+    xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

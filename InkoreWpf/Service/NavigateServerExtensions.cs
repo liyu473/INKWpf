@@ -23,7 +23,7 @@ public static class NavigateServerExtensions
     public static IServiceCollection AddDefaultPages(this IServiceCollection services)
     {
         return services
-            .AddPage<LaserParameterView>("LaserParameter")
+            .AddPage<HomeView>("Home")
             .AddPage<SettingsView>("Settings");
     }
 }

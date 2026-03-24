@@ -4,6 +4,8 @@ using iNKORE.UI.WPF.Modern;
 using System.Reflection;
 using System.Windows.Media;
 using InkoreWpf.Properties;
+using LyuExtensions.Aspects;
+using LyuWpfHelper.ViewModels;
 
 namespace InkoreWpf.ViewModel;
 
@@ -13,6 +15,7 @@ public record BackdropChangedMessage(string BackdropType);
 // 导航位置变更消息
 public record NavPanelModeChangedMessage(string Mode);
 
+[Singleton]
 public partial class SettingsViewModel : ViewModelBase
 {
     private static readonly Assembly _assembly = Assembly.GetExecutingAssembly();

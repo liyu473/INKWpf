@@ -1,15 +1,14 @@
-﻿using LogExtension.Builder;
-using LogExtension.Extensions;
-using LyuEModbus.DependencyInjection;
-using LyuEModbus.Models;
+﻿using InkoreWpf.Properties;
+using InkoreWpf.Service;
+using InkoreWpf.View;
+using LyuExtensions.Extensions;
+using LyuLogExtension.Builder;
+using LyuLogExtension.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using InkoreWpf.Service;
 using System.Windows;
-using InkoreWpf.Properties;
-using InkoreWpf.View;
 using ZLogger;
 using ZLogger.Providers;
 
@@ -54,6 +53,8 @@ public partial class App : Application
         SetupExceptionHandling();
     }
 
+    #region Ink主题设置
+
     /// <summary>
     /// 加载保存的主题设置
     /// </summary>
@@ -75,6 +76,8 @@ public partial class App : Application
         iNKORE.UI.WPF.Modern.ThemeManager.Current.AccentColor = color;
     }
 
+    #endregion
+
 
     protected override async void OnStartup(StartupEventArgs e)
     {
@@ -89,18 +92,8 @@ public partial class App : Application
 
         await _host.StartAsync();
 
-        var loginWindow = Services.GetRequiredService<LoginWindow>();
-        if (loginWindow.ShowDialog() == true)
-        {
-            ShutdownMode = ShutdownMode.OnMainWindowClose;
-            var mainWindow = Services.GetRequiredService<MainWindow>();
-            MainWindow = mainWindow;
-            mainWindow.Show();
-        }
-        else
-        {
-            Shutdown();
-        }
+        var mainWindow = Services.GetRequiredService<MainWindow>();
+        mainWindow.Show();
     }
 
     protected override async void OnExit(ExitEventArgs e)
@@ -149,7 +142,7 @@ public partial class App : Application
     {
         services.AddSingleton(context.Configuration);
 
-        services.AddViews().AddViewModels().AddNavigation();
+        services.AddNavigation().RegisterServices();
 
         services.AddZLogger(builder =>
             builder
@@ -171,23 +164,6 @@ public partial class App : Application
                 .WithOutputFilter("System", LogLevel.Information)
                 .WithOutputFilter("Microsoft", LogLevel.Information)
         );
-
-        var modbusOptions = context.Configuration.GetSection("Modbus").Get<ModbusMasterOptions>();
-        if (modbusOptions?.Name is not null)
-        {
-            services.AddSingleton(modbusOptions);
-
-            services.AddModbus(options =>
-            options.AddTcpMaster(modbusOptions.Name, master =>
-            {
-                master.IpAddress = modbusOptions.IpAddress;
-                master.Port = modbusOptions.Port;
-                master.SlaveId = modbusOptions.SlaveId;
-                master.ReadTimeout = modbusOptions.ReadTimeout;
-                master.WriteTimeout = modbusOptions.WriteTimeout;
-            })
-        );
-        }
     }
 
     /// <summary>

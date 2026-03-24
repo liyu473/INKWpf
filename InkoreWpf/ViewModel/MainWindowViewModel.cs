@@ -4,18 +4,22 @@ using CommunityToolkit.Mvvm.Messaging;
 using iNKORE.UI.WPF.Modern.Controls;
 using InkoreWpf.Properties;
 using InkoreWpf.Service;
+using LyuExtensions.Aspects;
+using LyuWpfHelper.ViewModels;
 
 namespace InkoreWpf.ViewModel;
 
+[Singleton]
 public partial class MainWindowViewModel : ViewModelBase
 {
     private static readonly Assembly _assembly = Assembly.GetExecutingAssembly();
+
+    [Inject]
     private readonly NavigateServer _nav;
 
-    public MainWindowViewModel(NavigateServer nav)
+    public MainWindowViewModel()
     {
-        _nav = nav;
-        Page = nav.GetPageByTag("LaserParameter");
+        Page = _nav!.GetPageByTag("LaserParameter");
 
         // 初始化导航模式
         NavPanelMode = Settings.Default.NavPanelMode switch

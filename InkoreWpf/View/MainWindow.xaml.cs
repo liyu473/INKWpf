@@ -1,6 +1,4 @@
-﻿using System.Windows;
-using CommunityToolkit.Mvvm.Messaging;
-using iNKORE.UI.WPF.Modern;
+﻿using CommunityToolkit.Mvvm.Messaging;
 using iNKORE.UI.WPF.Modern.Controls;
 using iNKORE.UI.WPF.Modern.Controls.Helpers;
 using iNKORE.UI.WPF.Modern.Helpers.Styles;
@@ -8,20 +6,25 @@ using iNKORE.UI.WPF.Modern.Media.Animation;
 using InkoreWpf.Properties;
 using InkoreWpf.Service;
 using InkoreWpf.ViewModel;
+using LyuExtensions.Aspects;
+using System.Windows;
 
 namespace InkoreWpf.View;
 
+
+[Singleton]
 public partial class MainWindow : Window
 {
+    [Inject]
     private readonly MainWindowViewModel _vm;
+
+    [Inject]
     private readonly NavigateServer _nav;
 
-    public MainWindow(MainWindowViewModel vm, NavigateServer nav)
+    public MainWindow()
     {
         InitializeComponent();
-        DataContext = vm;
-        _vm = vm;
-        _nav = nav;
+        DataContext = _vm;
 
         ApplyBackdropType(Settings.Default.BackdropType);
 
@@ -53,7 +56,7 @@ public partial class MainWindow : Window
             if (page is not null)
             {
                 ContentFrame.Navigate(page, null, new DrillInNavigationTransitionInfo());
-  
+
             }
         }
     }

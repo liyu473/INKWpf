@@ -5,11 +5,13 @@ using System.Windows.Controls;
 namespace InkoreWpf.View;
 
 [Transient]
-public partial class SettingsView : UserControl
+public partial class HomeView : UserControl
 {
-    public SettingsView(SettingsViewModel vm)
+    [Inject]
+    private readonly HomeViewModel _vm;
+
+    public HomeView()
     {
         InitializeComponent();
-        DataContext = vm;
     }
 }
