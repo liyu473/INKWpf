@@ -1,8 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using OperaMaster.View;
-using OperaMaster.ViewModel;
+﻿using InkoreWpf.View;
+using InkoreWpf.ViewModel;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace OperaMaster.Service;
+namespace InkoreWpf.Service;
 internal static class RegisterViews
 {
     public static IServiceCollection AddViews(this IServiceCollection services)

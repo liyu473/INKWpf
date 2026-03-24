@@ -1,7 +1,7 @@
-﻿using OperaMaster.ViewModel;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
+using InkoreWpf.ViewModel;
 
-namespace OperaMaster.View;
+namespace InkoreWpf.View;
 
 /// <summary>
 /// LaserParameterView.xaml 的交互逻辑

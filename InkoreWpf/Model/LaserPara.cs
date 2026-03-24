@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace OperaMaster.Model;
+namespace InkoreWpf.Model;
 
 internal partial class LaserPara:ObservableObject
 {

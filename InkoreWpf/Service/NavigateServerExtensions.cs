@@ -1,7 +1,7 @@
+using InkoreWpf.View;
 using Microsoft.Extensions.DependencyInjection;
-using OperaMaster.View;
 
-namespace OperaMaster.Service;
+namespace InkoreWpf.Service;
 
 /// <summary>
 /// NavigateServer 链式扩展方法

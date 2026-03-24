@@ -6,13 +6,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using OperaMaster.Service;
-using OperaMaster.View;
+using InkoreWpf.Service;
 using System.Windows;
+using InkoreWpf.Properties;
+using InkoreWpf.View;
 using ZLogger;
 using ZLogger.Providers;
 
-namespace OperaMaster;
+namespace InkoreWpf;
 
 public partial class App : Application
 {
@@ -58,7 +59,7 @@ public partial class App : Application
     /// </summary>
     private static void LoadThemeSettings()
     {
-        var settings = OperaMaster.Properties.Settings.Default;
+        var settings = Settings.Default;
 
         // 加载主题模式
         iNKORE.UI.WPF.Modern.ApplicationTheme? theme = settings.ThemeMode switch

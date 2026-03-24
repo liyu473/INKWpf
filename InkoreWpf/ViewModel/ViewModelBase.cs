@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace OperaMaster.ViewModel;
+namespace InkoreWpf.ViewModel;
 
 public partial class ViewModelBase : ObservableObject
 {

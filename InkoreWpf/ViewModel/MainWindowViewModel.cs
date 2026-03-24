@@ -2,10 +2,10 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using iNKORE.UI.WPF.Modern.Controls;
-using OperaMaster.Properties;
-using OperaMaster.Service;
+using InkoreWpf.Properties;
+using InkoreWpf.Service;
 
-namespace OperaMaster.ViewModel;
+namespace InkoreWpf.ViewModel;
 
 public partial class MainWindowViewModel : ViewModelBase
 {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
-namespace OperaMaster.Service;
+namespace InkoreWpf.Service;
 
 public sealed class NavigateServer(IServiceProvider provider, IOptions<NavigateServerOptions> options)
 {

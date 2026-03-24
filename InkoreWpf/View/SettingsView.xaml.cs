@@ -1,9 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using OperaMaster.ViewModel;
+using InkoreWpf.ViewModel;
 
-namespace OperaMaster.View;
+namespace InkoreWpf.View;
 
 public partial class SettingsView : UserControl
 {

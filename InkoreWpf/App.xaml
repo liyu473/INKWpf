@@ -1,9 +1,9 @@
 ﻿<Application
-    x:Class="OperaMaster.App"
+    x:Class="InkoreWpf.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:converter="clr-namespace:OperaMaster.Converter"
-    xmlns:local="clr-namespace:OperaMaster"
+    xmlns:converter="clr-namespace:InkoreWpf.Converter"
+    xmlns:local="clr-namespace:InkoreWpf"
     xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
     ShutdownMode="OnExplicitShutdown">
     <Application.Resources>

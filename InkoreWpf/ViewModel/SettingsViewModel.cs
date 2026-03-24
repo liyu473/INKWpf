@@ -1,11 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using iNKORE.UI.WPF.Modern;
-using OperaMaster.Properties;
 using System.Reflection;
 using System.Windows.Media;
+using InkoreWpf.Properties;
 
-namespace OperaMaster.ViewModel;
+namespace InkoreWpf.ViewModel;
 
 // 背景类型变更消息
 public record BackdropChangedMessage(string BackdropType);

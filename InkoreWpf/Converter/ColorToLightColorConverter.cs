@@ -2,7 +2,7 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace OperaMaster.Converter;
+namespace InkoreWpf.Converter;
 
 /// <summary>
 /// 将颜色转换为淡色，透明度通过 ConverterParameter 指定（默认 20）

@@ -2,7 +2,7 @@
 using LyuEModbus.Abstractions;
 using LyuEModbus.Models;
 
-namespace OperaMaster.ViewModel;
+namespace InkoreWpf.ViewModel;
 
 public partial class LaserParameterViewModel(IEModbusFactory factory, ModbusMasterOptions opt)
     : ViewModelBase

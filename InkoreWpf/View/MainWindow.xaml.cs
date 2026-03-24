@@ -5,11 +5,11 @@ using iNKORE.UI.WPF.Modern.Controls;
 using iNKORE.UI.WPF.Modern.Controls.Helpers;
 using iNKORE.UI.WPF.Modern.Helpers.Styles;
 using iNKORE.UI.WPF.Modern.Media.Animation;
-using OperaMaster.Properties;
-using OperaMaster.Service;
-using OperaMaster.ViewModel;
+using InkoreWpf.Properties;
+using InkoreWpf.Service;
+using InkoreWpf.ViewModel;
 
-namespace OperaMaster.View;
+namespace InkoreWpf.View;
 
 public partial class MainWindow : Window
 {

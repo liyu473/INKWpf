@@ -1,5 +1,5 @@
 <Window
-    x:Class="OperaMaster.View.LoginWindow"
+    x:Class="InkoreWpf.View.LoginWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -29,7 +29,7 @@
                 x:Name="AppNameText"
                 FontSize="28"
                 FontWeight="Bold"
-                Text="OperaMaster" />
+                Text="InkoreWpf" />
             <TextBlock
                 x:Name="VersionText"
                 HorizontalAlignment="Center"
