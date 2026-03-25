@@ -1,5 +1,4 @@
-﻿using InkoreWpf.Properties;
-using InkoreWpf.Service;
+﻿using InkoreWpf.Service;
 using InkoreWpf.View;
 using LyuExtensions.Extensions;
 using LyuLogExtension.Builder;
@@ -53,38 +52,9 @@ public partial class App : Application
         SetupExceptionHandling();
     }
 
-    #region Ink主题设置
-
-    /// <summary>
-    /// 加载保存的主题设置
-    /// </summary>
-    private static void LoadThemeSettings()
-    {
-        var settings = Settings.Default;
-
-        // 加载主题模式
-        iNKORE.UI.WPF.Modern.ApplicationTheme? theme = settings.ThemeMode switch
-        {
-            "Light" => iNKORE.UI.WPF.Modern.ApplicationTheme.Light,
-            "Dark" => iNKORE.UI.WPF.Modern.ApplicationTheme.Dark,
-            _ => null // 跟随系统
-        };
-        iNKORE.UI.WPF.Modern.ThemeManager.Current.ApplicationTheme = theme;
-
-        // 加载主题色
-        var color = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(settings.AccentColor);
-        iNKORE.UI.WPF.Modern.ThemeManager.Current.AccentColor = color;
-    }
-
-    #endregion
-
-
     protected override async void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
-
-        // 加载保存的主题设置
-        LoadThemeSettings();
 
         _host = CreateHostBuilder(e.Args).Build();
         Services = _host.Services;

@@ -1,11 +1,8 @@
-﻿using System.Reflection;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Messaging;
-using iNKORE.UI.WPF.Modern.Controls;
-using InkoreWpf.Properties;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using InkoreWpf.Service;
 using LyuExtensions.Aspects;
 using LyuWpfHelper.ViewModels;
+using System.Reflection;
 
 namespace InkoreWpf.ViewModel;
 
@@ -17,36 +14,13 @@ public partial class MainWindowViewModel : ViewModelBase
     [Inject]
     private readonly NavigateServer _nav;
 
-    public MainWindowViewModel()
-    {
-        Page = _nav!.GetPageByTag("LaserParameter");
-
-        // 初始化导航模式
-        NavPanelMode = Settings.Default.NavPanelMode switch
-        {
-            "Top" => NavigationViewPaneDisplayMode.Top,
-            _ => NavigationViewPaneDisplayMode.Left
-        };
-
-        // 监听导航模式变更
-        WeakReferenceMessenger.Default.Register<NavPanelModeChangedMessage>(this, (r, m) =>
-        {
-            NavPanelMode = m.Mode switch
-            {
-                "Top" => NavigationViewPaneDisplayMode.Top,
-                _ => NavigationViewPaneDisplayMode.Left
-            };
-        });
-    }
-
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(Header))]
     public partial object? Page { get; set; }
 
     public string? Header => Page is { } page ? _nav.GetHeaderByType(page.GetType()) : null;
 
-    [ObservableProperty]
-    public partial NavigationViewPaneDisplayMode NavPanelMode { get; set; }
+    public SettingsViewModel SettingsViewModel => App.GetService<SettingsViewModel>();
 
     /// <summary>
     /// 程序集名称

@@ -1,19 +1,15 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
+﻿using iNKORE.UI.WPF.Modern;
 using iNKORE.UI.WPF.Modern.Controls;
-using iNKORE.UI.WPF.Modern.Controls.Helpers;
-using iNKORE.UI.WPF.Modern.Helpers.Styles;
-using iNKORE.UI.WPF.Modern.Media.Animation;
-using InkoreWpf.Properties;
 using InkoreWpf.Service;
 using InkoreWpf.ViewModel;
 using LyuExtensions.Aspects;
-using System.Windows;
+using LyuWpfHelper.Controls;
+using LyuWpfHelper.Helpers;
 
 namespace InkoreWpf.View;
 
-
 [Singleton]
-public partial class MainWindow : Window
+public partial class MainWindow : LyuWindow
 {
     [Inject]
     private readonly MainWindowViewModel _vm;
@@ -25,24 +21,6 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         DataContext = _vm;
-
-        ApplyBackdropType(Settings.Default.BackdropType);
-
-        WeakReferenceMessenger.Default.Register<BackdropChangedMessage>(this, (r, m) =>
-        {
-            ApplyBackdropType(m.BackdropType);
-        });
-    }
-
-    private void ApplyBackdropType(string backdropType)
-    {
-        var type = backdropType switch
-        {
-            "Acrylic10" => BackdropType.Acrylic10,
-            _ => BackdropType.Mica
-        };
-
-        WindowHelper.SetSystemBackdropType(this, type);
     }
 
     private void NavView_SelectionChanged(
@@ -53,10 +31,14 @@ public partial class MainWindow : Window
         if (args.SelectedItem is NavigationViewItem { Tag: string tag })
         {
             var page = _nav.GetPageByTag(tag);
+
             if (page is not null)
             {
-                ContentFrame.Navigate(page, null, new DrillInNavigationTransitionInfo());
-
+                ContentFrame.Navigate(
+                    page,
+                    null,
+                    App.GetService<SettingsViewModel>().SelectedNavTransition.Value
+                );
             }
         }
     }
@@ -68,5 +50,14 @@ public partial class MainWindow : Window
     {
         if (ContentFrame.CanGoBack)
             ContentFrame.GoBack();
+    }
+
+    protected override void OnThemeChanged(LyuWindowThemeChangedEventArgs e)
+    {
+        base.OnThemeChanged(e);
+        var elementTheme =
+            e.EffectiveTheme == WindowThemeMode.Dark ? ElementTheme.Dark : ElementTheme.Light;
+
+        ThemeManager.SetRequestedTheme(this, elementTheme);
     }
 }

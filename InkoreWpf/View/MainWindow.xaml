@@ -1,8 +1,9 @@
-﻿<Window
+﻿<lyu:LyuWindow
     x:Class="InkoreWpf.View.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:lyu="http://schemas.lyuwpfhelper.com/winfx/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
     xmlns:viewmodel="clr-namespace:InkoreWpf.ViewModel"
@@ -10,15 +11,14 @@
     Width="1200"
     Height="800"
     d:DataContext="{d:DesignInstance Type=viewmodel:MainWindowViewModel}"
-    ui:TitleBar.Background="{Binding ElementName=rootGrid, Path=Background}"
-    ui:TitleBar.Height="36"
-    ui:TitleBar.InactiveBackground="{Binding ElementName=rootGrid, Path=Background}"
-    ui:WindowHelper.SystemBackdropType="Mica"
-    ui:WindowHelper.UseModernWindowStyle="True"
+    lyu:LyuWindowHelper.FullScreenKey="F11"
+    lyu:WindowBackdropHelper.Backdrop="Mica"
+    TitleBarBackground="Transparent"
+    TitleBarHeight="40"
     WindowStartupLocation="CenterScreen"
     WindowState="Maximized"
     mc:Ignorable="d">
-    <Window.Resources>
+    <lyu:LyuWindow.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ui:ThemeResources CanBeAccessedAcrossThreads="False">
@@ -39,22 +39,24 @@
                 </ui:ThemeResources>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-    </Window.Resources>
+    </lyu:LyuWindow.Resources>
 
-    <Grid x:Name="rootGrid">
-        <Grid.Background>
-            <SolidColorBrush Color="{Binding AccentColor, Source={x:Static ui:ThemeManager.Current}, Converter={StaticResource ColorToLightColorConverter}, ConverterParameter=40}" />
-        </Grid.Background>
+    <lyu:LyuWindow.TitleBarRightContent>
+        <lyu:SimpleStackPanel>
+            <Button Content="关于" Style="{StaticResource TitleBarButtonStyle}" />
+        </lyu:SimpleStackPanel>
+    </lyu:LyuWindow.TitleBarRightContent>
 
+    <Grid>
         <ui:NavigationView
             x:Name="NavView"
             BackRequested="NvSample_BackRequested"
             Header="{Binding Header}"
-            IsBackButtonVisible="Auto"
+            IsBackButtonVisible="Collapsed"
             IsBackEnabled="{Binding ElementName=ContentFrame, Path=CanGoBack}"
             IsPaneToggleButtonVisible="True"
             IsSettingsVisible="False"
-            PaneDisplayMode="{Binding NavPanelMode}"
+            PaneDisplayMode="{Binding SettingsViewModel.SelectedNavMode}"
             PaneTitle="目录"
             SelectionChanged="NavView_SelectionChanged">
 
@@ -88,4 +90,4 @@
 
         </ui:NavigationView>
     </Grid>
-</Window>
+</lyu:LyuWindow>
