@@ -28,6 +28,8 @@ public partial class SettingsViewModel : ViewModelBase
 
     public SettingsViewModel()
     {
+        SelectedTheme = WindowThemeMode.FollowSystem;
+        SelectedBackdrop = WindowBackdropType.Mica;
         SelectedNavTransition = NavigationTransitions[0];
     }
 
@@ -36,7 +38,7 @@ public partial class SettingsViewModel : ViewModelBase
         NavigationViewPaneDisplayMode.Left;
 
     [ObservableProperty]
-    public partial WindowBackdropType SelectedBackdrop { get; set; } = WindowBackdropType.Mica;
+    public partial WindowBackdropType SelectedBackdrop { get; set; } 
 
     partial void OnSelectedBackdropChanged(WindowBackdropType value)
     {
@@ -44,7 +46,7 @@ public partial class SettingsViewModel : ViewModelBase
     }
 
     [ObservableProperty]
-    public partial WindowThemeMode SelectedTheme { get; set; } = WindowThemeMode.Dark;
+    public partial WindowThemeMode SelectedTheme { get; set; }
 
     partial void OnSelectedThemeChanged(WindowThemeMode value)
     {

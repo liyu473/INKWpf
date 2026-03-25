@@ -84,9 +84,13 @@
                 </ui:NavigationViewItem>
             </ui:NavigationView.FooterMenuItems>
 
-            <Border Padding="59,0">
+
+            <ScrollViewer
+                    Padding="59,0"
+                    IsTabStop="False"
+                    VerticalScrollBarVisibility="Auto">
                 <ui:Frame x:Name="ContentFrame" Content="{Binding Page, Mode=TwoWay}" />
-            </Border>
+            </ScrollViewer>
 
         </ui:NavigationView>
     </Grid>

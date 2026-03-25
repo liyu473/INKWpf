@@ -41,102 +41,101 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
     </UserControl.Resources>
-    <ScrollViewer IsTabStop="False" VerticalScrollBarVisibility="Auto">
-        <ikw:SimpleStackPanel Spacing="4">
-            <TextBlock
-                Margin="0,16,10,5"
-                Style="{StaticResource BodyStrongTextBlockStyle}"
-                Text="Appearance &amp; behavior" />
 
-            <ui:SettingsCard Description="Select which app theme to display" Header="主题">
-                <ui:SettingsCard.HeaderIcon>
-                    <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.Color}" />
-                </ui:SettingsCard.HeaderIcon>
-                <ComboBox
-                    Width="150"
-                    ItemsSource="{Binding Source={StaticResource ThemeEnum}}"
-                    SelectedItem="{Binding SelectedTheme, Mode=TwoWay}" />
-            </ui:SettingsCard>
+    <ikw:SimpleStackPanel Spacing="4">
+        <TextBlock
+            Margin="0,16,10,5"
+            Style="{StaticResource BodyStrongTextBlockStyle}"
+            Text="Appearance &amp; behavior" />
 
-            <ui:SettingsCard Description="Select window backdrop effect" Header="背景效果">
-                <ui:SettingsCard.HeaderIcon>
-                    <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.Photo}" />
-                </ui:SettingsCard.HeaderIcon>
-                <ComboBox
-                    Width="150"
-                    ItemsSource="{Binding Source={StaticResource BackdropEnum}}"
-                    SelectedItem="{Binding SelectedBackdrop, Mode=TwoWay}" />
-            </ui:SettingsCard>
+        <ui:SettingsCard Description="Select which app theme to display" Header="主题">
+            <ui:SettingsCard.HeaderIcon>
+                <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.Color}" />
+            </ui:SettingsCard.HeaderIcon>
+            <ComboBox
+                Width="150"
+                ItemsSource="{Binding Source={StaticResource ThemeEnum}}"
+                SelectedItem="{Binding SelectedTheme, Mode=TwoWay}" />
+        </ui:SettingsCard>
 
-            <ui:SettingsCard Description="Select navigation panel position" Header="导航位置">
-                <ui:SettingsCard.HeaderIcon>
-                    <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.DockLeft}" />
-                </ui:SettingsCard.HeaderIcon>
-                <ComboBox
-                    Width="150"
-                    ItemsSource="{Binding Source={StaticResource NaviEnum}}"
-                    SelectedItem="{Binding SelectedNavMode, Mode=TwoWay}" />
-            </ui:SettingsCard>
+        <ui:SettingsCard Description="Select window backdrop effect" Header="背景效果">
+            <ui:SettingsCard.HeaderIcon>
+                <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.Photo}" />
+            </ui:SettingsCard.HeaderIcon>
+            <ComboBox
+                Width="150"
+                ItemsSource="{Binding Source={StaticResource BackdropEnum}}"
+                SelectedItem="{Binding SelectedBackdrop, Mode=TwoWay}" />
+        </ui:SettingsCard>
 
-            <ui:SettingsCard Description="Select navigation transition animation" Header="导航动画">
-                <ui:SettingsCard.HeaderIcon>
-                    <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.FavoriteList}" />
-                </ui:SettingsCard.HeaderIcon>
-                <ComboBox
-                    Width="150"
-                    ItemsSource="{Binding NavigationTransitions}"
-                    SelectedItem="{Binding SelectedNavTransition, Mode=TwoWay}">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Name}" />
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-            </ui:SettingsCard>
+        <ui:SettingsCard Description="Select navigation panel position" Header="导航位置">
+            <ui:SettingsCard.HeaderIcon>
+                <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.DockLeft}" />
+            </ui:SettingsCard.HeaderIcon>
+            <ComboBox
+                Width="150"
+                ItemsSource="{Binding Source={StaticResource NaviEnum}}"
+                SelectedItem="{Binding SelectedNavMode, Mode=TwoWay}" />
+        </ui:SettingsCard>
+
+        <ui:SettingsCard Description="Select navigation transition animation" Header="导航动画">
+            <ui:SettingsCard.HeaderIcon>
+                <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.FavoriteList}" />
+            </ui:SettingsCard.HeaderIcon>
+            <ComboBox
+                Width="150"
+                ItemsSource="{Binding NavigationTransitions}"
+                SelectedItem="{Binding SelectedNavTransition, Mode=TwoWay}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </ui:SettingsCard>
 
 
-            <Border Style="{StaticResource CardStyle}">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
+        <Border Style="{StaticResource CardStyle}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
 
-                    <ui:FontIcon
-                        Grid.Column="0"
-                        Margin="0,0,16,0"
-                        VerticalAlignment="Center"
-                        Icon="{x:Static ui:SegoeFluentIcons.Eyedropper}" />
+                <ui:FontIcon
+                    Grid.Column="0"
+                    Margin="0,0,16,0"
+                    VerticalAlignment="Center"
+                    Icon="{x:Static ui:SegoeFluentIcons.Eyedropper}" />
 
-                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                        <TextBlock FontWeight="SemiBold" Text="主题色" />
-                        <TextBlock Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="Custom app theme color" />
-                    </StackPanel>
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <TextBlock FontWeight="SemiBold" Text="主题色" />
+                    <TextBlock Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="Custom app theme color" />
+                </StackPanel>
 
-                    <ikw:SquarePicker
-                        x:Name="ColorPicker"
-                        Grid.Column="2"
-                        MinWidth="200"
-                        MinHeight="200"
-                        SelectedColor="{Binding SelectedColor, Mode=TwoWay}" />
-                </Grid>
-            </Border>
+                <ikw:SquarePicker
+                    x:Name="ColorPicker"
+                    Grid.Column="2"
+                    MinWidth="200"
+                    MinHeight="200"
+                    SelectedColor="{Binding SelectedColor, Mode=TwoWay}" />
+            </Grid>
+        </Border>
 
-            <TextBlock
-                Margin="0,16,10,5"
-                Style="{DynamicResource BodyStrongTextBlockStyle}"
-                Text="About" />
+        <TextBlock
+            Margin="0,16,10,5"
+            Style="{DynamicResource BodyStrongTextBlockStyle}"
+            Text="About" />
 
-            <ui:SettingsCard
-                Description="{Binding Version}"
-                Header="{Binding AppName}"
-                IsClickEnabled="True">
-                <ui:SettingsCard.HeaderIcon>
-                    <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.SearchAndApps}" />
-                </ui:SettingsCard.HeaderIcon>
-            </ui:SettingsCard>
+        <ui:SettingsCard
+            Description="{Binding Version}"
+            Header="{Binding AppName}"
+            IsClickEnabled="True">
+            <ui:SettingsCard.HeaderIcon>
+                <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.SearchAndApps}" />
+            </ui:SettingsCard.HeaderIcon>
+        </ui:SettingsCard>
 
-        </ikw:SimpleStackPanel>
-    </ScrollViewer>
+    </ikw:SimpleStackPanel>
 </UserControl>
