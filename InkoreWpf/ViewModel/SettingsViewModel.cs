@@ -50,7 +50,7 @@ public partial class SettingsViewModel : ViewModelBase
 
     partial void OnSelectedThemeChanged(WindowThemeMode value)
     {
-        WindowThemeHelper.ApplyTheme(_mainWindow, value);
+        WindowThemeHelper.SetTheme(_mainWindow, value);
     }
 
     [ObservableProperty]
