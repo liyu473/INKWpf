@@ -9,6 +9,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ui:ThemeResources />
                 <ui:XamlControlsResources />
+                <ResourceDictionary Source="pack://application:,,,/LyuWpfHelper;component/Themes/Generic.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <Style x:Key="CardStyle" TargetType="Border">

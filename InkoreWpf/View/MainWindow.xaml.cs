@@ -3,8 +3,11 @@ using iNKORE.UI.WPF.Modern.Controls;
 using InkoreWpf.Service;
 using InkoreWpf.ViewModel;
 using LyuExtensions.Aspects;
+using LyuExtensions.Extensions;
 using LyuWpfHelper.Controls;
+using LyuWpfHelper.Extensions;
 using LyuWpfHelper.Helpers;
+using LyuWpfHelper.Services;
 
 namespace InkoreWpf.View;
 
@@ -16,6 +19,9 @@ public partial class MainWindow : LyuWindow
 
     [Inject]
     private readonly NavigateServer _nav;
+
+    [Inject]
+    private readonly INotificationService notificationService;
 
     public MainWindow()
     {
@@ -59,5 +65,14 @@ public partial class MainWindow : LyuWindow
             e.EffectiveTheme == WindowThemeMode.Dark ? ElementTheme.Dark : ElementTheme.Light;
 
         ThemeManager.SetRequestedTheme(this, elementTheme);
+        notificationService.ShowSuccess(
+            $"切换至{elementTheme.GetEnumDescription()}",
+            position: NotificationPosition.BottomRight
+        );
+    }
+
+    private void About_Click(object sender, System.Windows.RoutedEventArgs e)
+    {
+        AboutDrawer.IsOpen = !AboutDrawer.IsOpen;
     }
 }

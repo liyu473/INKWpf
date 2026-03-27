@@ -15,11 +15,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.1" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
     <PackageReference Include="iNKORE.UI.WPF.Modern" Version="0.10.2.1" />
-    <PackageReference Include="LyuExtensions" Version="1.1.8" />
+    <PackageReference Include="LyuExtensions" Version="1.1.9" />
     <PackageReference Include="LyuLogExtension" Version="1.7.2" />
-    <PackageReference Include="LyuWpfHelper" Version="1.1.4" />
+    <PackageReference Include="LyuWpfHelper" Version="1.2.5" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="11.0.0-preview.2.26159.112" />
   </ItemGroup>
 

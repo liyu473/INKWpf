@@ -35,7 +35,7 @@ public partial class SettingsViewModel : ViewModelBase
 
     [ObservableProperty]
     public partial NavigationViewPaneDisplayMode SelectedNavMode { get; set; } =
-        NavigationViewPaneDisplayMode.Left;
+        NavigationViewPaneDisplayMode.Auto;
 
     [ObservableProperty]
     public partial WindowBackdropType SelectedBackdrop { get; set; } 

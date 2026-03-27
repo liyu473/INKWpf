@@ -43,11 +43,27 @@
 
     <lyu:LyuWindow.TitleBarRightContent>
         <lyu:SimpleStackPanel>
-            <Button Content="关于" Style="{StaticResource TitleBarButtonStyle}" />
+            <Button
+                Click="About_Click"
+                Content="关于"
+                Style="{StaticResource TitleBarButtonStyle}" />
         </lyu:SimpleStackPanel>
     </lyu:LyuWindow.TitleBarRightContent>
 
     <Grid>
+        <lyu:DrawersHost>
+            <lyu:Drawer
+                x:Name="AboutDrawer"
+                MinWidth="220"
+                Header="About"
+                Position="Right">
+                <lyu:SimpleStackPanel Spacing="12">
+                    <TextBlock>LyuWpfHelper</TextBlock>
+                    <TextBlock>LyuExtensions</TextBlock>
+                    <TextBlock>LyuLogExtension</TextBlock>
+                </lyu:SimpleStackPanel>
+            </lyu:Drawer>
+        </lyu:DrawersHost>
         <ui:NavigationView
             x:Name="NavView"
             BackRequested="NvSample_BackRequested"
@@ -86,9 +102,9 @@
 
 
             <ScrollViewer
-                    Padding="59,0"
-                    IsTabStop="False"
-                    VerticalScrollBarVisibility="Auto">
+                Padding="59,0"
+                IsTabStop="False"
+                VerticalScrollBarVisibility="Auto">
                 <ui:Frame x:Name="ContentFrame" Content="{Binding Page, Mode=TwoWay}" />
             </ScrollViewer>
 

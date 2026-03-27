@@ -3,12 +3,13 @@ using InkoreWpf.View;
 using LyuExtensions.Extensions;
 using LyuLogExtension.Builder;
 using LyuLogExtension.Extensions;
+using LyuWpfHelper.Extensions;
+using LyuWpfHelper.Helpers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System.Windows;
-using ZLogger;
 using ZLogger.Providers;
 
 namespace InkoreWpf;
@@ -47,11 +48,6 @@ public partial class App : Application
 
     #endregion
 
-    public App()
-    {
-        SetupExceptionHandling();
-    }
-
     protected override async void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
@@ -61,6 +57,26 @@ public partial class App : Application
         _logger = Services.GetRequiredService<ILogger<App>>();
 
         await _host.StartAsync();
+
+        var global = new GlobalExceptionHandler(_logger, ex =>
+        {
+            if (Current?.Dispatcher != null)
+            {
+                Current.Dispatcher.BeginInvoke(
+                    new Action(() =>
+                    {
+                        MessageBox.Show(
+                            ex.Message,
+                            "全局异常",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Error
+                        );
+                    })
+                );
+            }
+        });
+
+        global.Initialize();
 
         var mainWindow = Services.GetRequiredService<MainWindow>();
         mainWindow.Show();
@@ -134,31 +150,8 @@ public partial class App : Application
                 .WithOutputFilter("System", LogLevel.Information)
                 .WithOutputFilter("Microsoft", LogLevel.Information)
         );
-    }
 
-    /// <summary>
-    /// 设置全局异常捕获
-    /// </summary>
-    private void SetupExceptionHandling()
-    {
-        // UI 线程未处理异常
-        DispatcherUnhandledException += (s, e) =>
-        {
-            _logger?.ZLogError($"UI线程异常{e.Exception}");
-            e.Handled = true;
-        };
-
-        // 非 UI 线程未处理异常
-        AppDomain.CurrentDomain.UnhandledException += (s, e) =>
-        {
-            _logger?.ZLogError($"非UI线程异常{e.ExceptionObject as Exception}");
-        };
-
-        // Task 未观察到的异常
-        TaskScheduler.UnobservedTaskException += (s, e) =>
-        {
-            _logger?.ZLogError($"Task异常{e.Exception}");
-            e.SetObserved();
-        };
+        services.AddLyuNotificationService();
+        services.AddLyuBusyService();
     }
 }
